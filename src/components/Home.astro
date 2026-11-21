@@ -21,7 +21,6 @@ const contacts = [
 <header class="site-header">
   <a class="brand" href="#top">
     <span class="brand-name">{profile.name}</span>
-    <span class="brand-handle">{profile.handle}</span>
   </a>
   <nav class="nav" aria-label={lang === 'tr' ? 'Bölümler' : 'Sections'}>
     <a href="#hakkimda">{s.nav.about}</a>
@@ -45,7 +44,7 @@ const contacts = [
     </div>
     <div class="intro">
     <div class="player" id="hakkimda">
-      <h1 class="name">{profile.name} <span class="handle">@{profile.handle}</span></h1>
+      <h1 class="name"><span lang="tr">{profile.name}</span> <span class="handle">{s.role}</span></h1>
       <p class="tagline">{s.tagline}</p>
     </div>
     <div class="about">
@@ -167,7 +166,7 @@ const contacts = [
 </main>
 
 <footer class="foot">
-  <p>© 2026 {profile.name} ({profile.handle})</p>
+  <p>© 2026 {profile.name}</p>
   <p>{s.footer}</p>
 </footer>
 
@@ -259,7 +258,6 @@ const contacts = [
   .site-header a { text-decoration: none; }
   .brand { display: inline-flex; align-items: baseline; gap: 8px; justify-self: start; }
   .brand-name { font-weight: 650; font-size: 1.0625rem; letter-spacing: -0.01em; }
-  .brand-handle { color: var(--text-3); font-size: 0.9375rem; }
   .nav { display: flex; gap: 4px; }
   .nav a {
     color: var(--text-2); font-size: 0.9375rem; font-weight: 500;

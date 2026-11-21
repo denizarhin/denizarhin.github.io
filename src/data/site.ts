@@ -1,7 +1,6 @@
 // Owner profile. Empty strings render as dim "not yet added" slots on the page.
 export const profile = {
-  name: 'Deniz',
-  handle: 'd3xs',
+  name: 'Deniz Arhın',
   itch: 'https://d3xs.itch.io',
   github: 'https://github.com/d3xsz',
   email: 'arhindeniz@gmail.com',
@@ -13,15 +12,16 @@ export type Lang = 'tr' | 'en';
 // Copy written with Deniz, 2026-11-21 (TR source, EN translation).
 export const t = {
   tr: {
-    htmlTitle: 'Deniz (d3xs) · Oyun geliştirici',
+    htmlTitle: 'Deniz Arhın · Oyun geliştirici',
+    role: 'Oyun geliştirici',
     metaDescription:
-      'Deniz (d3xs): Beykent Üniversitesi Dijital Oyun Tasarımı son sınıf öğrencisi. Unity ile çok oyunculu oyunlar ve hızlı prototipler. Son Hasat, Eggous, Polar Clash ve diğerleri.',
+      'Deniz Arhın: Beykent Üniversitesi Dijital Oyun Tasarımı son sınıf öğrencisi. Unity ile çok oyunculu oyunlar ve hızlı prototipler. Son Hasat, Eggous, Polar Clash ve diğerleri.',
     nav: { games: 'Oyunlar', about: 'Hakkımda', contact: 'İletişim' },
     skip: 'İçeriğe geç',
     tagline:
       'Unity ile çok oyunculu oyunlar ve hızlı prototipler geliştiriyorum.',
     about: [
-      'İstanbul Beykent Üniversitesi Dijital Oyun Tasarımı bölümünde son sınıf öğrencisiyim. yerel ağ ve çevrim içi ortak oyundan aynı klavyede oynanan düellolara kadar çok oyunculu sistemler kuruyor, fikirleri kısa sürede oynanabilir prototiplere dönüştürüyorum.',
+      'İstanbul Beykent Üniversitesi Dijital Oyun Tasarımı bölümünde son sınıf öğrencisiyim. Yerel ağ ve çevrim içi ortak oyundan aynı klavyede oynanan düellolara kadar çok oyunculu sistemler kuruyor, fikirleri kısa sürede oynanabilir prototiplere dönüştürüyorum.',
       'Staj, tam zamanlı iş ve freelance projelere açığım.',
     ],
     featuredHeading: 'Öne çıkan oyun',
@@ -44,9 +44,10 @@ export const t = {
     langSwitch: 'Dil',
   },
   en: {
-    htmlTitle: 'Deniz (d3xs) · Game developer',
+    htmlTitle: 'Deniz Arhın · Game developer',
+    role: 'Game developer',
     metaDescription:
-      'Deniz (d3xs): final-year Digital Game Design student at Beykent University. Multiplayer games and fast prototypes in Unity. Son Hasat, Eggous, Polar Clash and more.',
+      'Deniz Arhın: final-year Digital Game Design student at Beykent University. Multiplayer games and fast prototypes in Unity. Son Hasat, Eggous, Polar Clash and more.',
     nav: { games: 'Games', about: 'About', contact: 'Contact' },
     skip: 'Skip to content',
     tagline:
