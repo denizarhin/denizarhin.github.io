@@ -1,10 +1,10 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 
-// GitHub Pages: set `site` (and `base` if deployed to a project page,
-// e.g. https://d3xsz.github.io/portfolio → base: '/portfolio').
+// Primary address: Cloudflare Pages (denizarhin.pages.dev). The GitHub Pages copy at
+// d3xsz.github.io points search engines here through the canonical link in Base.astro.
 export default defineConfig({
-  site: 'https://d3xsz.github.io',
+  site: 'https://denizarhin.pages.dev',
   devToolbar: { enabled: false },
   i18n: {
     defaultLocale: 'tr',
