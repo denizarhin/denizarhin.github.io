@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.astro/
+.env
+.DS_Store
+# Impeccable runtime dirs ignore themselves; config/surfaces/design.json are committed.
+.impeccable/review/
+.impeccable/config.local.json
+.claude/

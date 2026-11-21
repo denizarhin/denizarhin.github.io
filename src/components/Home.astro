@@ -1,0 +1,525 @@
+---
+import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
+import { profile, t, type Lang } from '../data/site';
+import { featured, games } from '../data/games';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const s = t[lang];
+const contacts = [
+  { key: 'email', label: s.email, href: profile.email ? `mailto:${profile.email}` : '', icon: 'mail' as const, detail: profile.email },
+  { key: 'linkedin', label: 'LinkedIn', href: profile.linkedin, icon: 'linkedin' as const, detail: 'linkedin.com/in/deniz-arhın-798521291' },
+  { key: 'itch', label: 'itch.io', href: profile.itch, icon: 'gamepad' as const, detail: 'd3xs.itch.io' },
+  { key: 'github', label: 'GitHub', href: profile.github, icon: 'code' as const, detail: 'github.com/d3xsz' },
+];
+---
+<a class="skip" href="#main">{s.skip}</a>
+
+<header class="site-header">
+  <a class="brand" href="#top">
+    <span class="brand-name">{profile.name}</span>
+    <span class="brand-handle">{profile.handle}</span>
+  </a>
+  <nav class="nav" aria-label={lang === 'tr' ? 'Bölümler' : 'Sections'}>
+    <a href="#hakkimda">{s.nav.about}</a>
+    <a href="#oyunlar">{s.nav.games}</a>
+    <a href="#iletisim">{s.nav.contact}</a>
+  </nav>
+  <nav class="lang" aria-label={s.langSwitch}>
+    <a href="/" lang="tr" hreflang="tr" aria-current={lang === 'tr' ? 'page' : undefined}>TR</a>
+    <a href="/en/" lang="en" hreflang="en" aria-current={lang === 'en' ? 'page' : undefined}>EN</a>
+  </nav>
+</header>
+
+<main id="main">
+  <section class="hero" id="top">
+    <div class="backdrop" aria-hidden="true">
+      {featured.shots.map((shot, i) => (
+        <div class="bd" data-bd={i} data-active={i === 0 ? '' : undefined}>
+          <Image src={shot.src} alt="" widths={[480]} sizes="480px" loading={i === 0 ? 'eager' : 'lazy'} />
+        </div>
+      ))}
+    </div>
+    <div class="intro">
+    <div class="player" id="hakkimda">
+      <h1 class="name">{profile.name} <span class="handle">@{profile.handle}</span></h1>
+      <p class="tagline">{s.tagline}</p>
+    </div>
+    <div class="about">
+      {s.about.map((p) => <p>{p}</p>)}
+      <ul class="links" role="list">
+        <li><a class="btn btn-secondary" href={profile.itch}><Icon name="gamepad" /> itch.io</a></li>
+        <li><a class="btn btn-secondary" href={profile.github}><Icon name="code" /> GitHub</a></li>
+      </ul>
+    </div>
+
+    <article class="featured" aria-labelledby="featured-title" data-attract style={`--hue: ${featured.hue}`}>
+      <div class="screen" aria-roledescription="carousel" aria-label={featured.title}>
+        {featured.shots.map((shot, i) => (
+          <figure class="shot" data-shot={i} data-active={i === 0 ? '' : undefined}
+            aria-hidden={i === 0 ? undefined : 'true'}>
+            <Image src={shot.src} alt={shot.alt[lang]} widths={[640, 960, 1280]}
+              sizes="(min-width: 1100px) 860px, 100vw"
+              loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : undefined} />
+          </figure>
+        ))}
+        <button class="screen-pause" type="button" data-pause
+          data-label-pause={s.pause} data-label-play={s.resume} aria-label={s.pause}>
+          <Icon name="pause" size={16} class="i-pause" />
+          <Icon name="play" size={16} class="i-play" />
+        </button>
+      </div>
+      <div class="filmstrip">
+        {featured.shots.map((shot, i) => (
+          <button type="button" class="frame" data-pip={i}
+            aria-label={s.shotLabel(i + 1, featured.shots.length)}
+            aria-current={i === 0 ? 'true' : undefined}>
+            <Image src={shot.src} alt="" widths={[160, 240]} sizes="120px" loading="lazy" />
+          </button>
+        ))}
+      </div>
+
+      <div class="featured-body">
+        <div class="featured-top">
+          <h2 id="featured-title"><span class="visually-hidden">{s.featuredHeading}: </span>{featured.title}</h2>
+          <div class="actions">
+            <a class="btn btn-primary" href={featured.itch}>
+              <Icon name="play" size={16} />
+              <span>{s.play}</span>
+            </a>
+            <span class="hint">{s.playHint} · {featured.download}</span>
+            {featured.source
+              ? <a class="btn btn-secondary" href={featured.source}><Icon name="code" /> {s.source}</a>
+              : <span class="muted-note"><Icon name="code" size={16} /> {s.sourceNone}</span>}
+          </div>
+        </div>
+        <dl class="facts">
+          {featured.facts.map((f) => (
+            <div><dt>{f.label[lang]}</dt><dd>{f.value[lang]}</dd></div>
+          ))}
+        </dl>
+        <p class="pitch">{featured.pitch[lang]}</p>
+      </div>
+    </article>
+    </div>
+  </section>
+
+  <section class="games" id="oyunlar" aria-labelledby="games-title">
+    <div class="section-head">
+      <h2 id="games-title">{s.stagesHeading}</h2>
+      <p>{s.stagesIntro}</p>
+    </div>
+    <ul class="game-grid" role="list">
+      {games.map((g) => (
+        <li class="card" style={`--hue: ${g.hue}`} data-gallery>
+          <a class="card-media" href={g.itch} tabindex="-1" aria-hidden="true">
+            {[g.thumb, ...(g.gallery ?? [])].map((img, i) => (
+              <Image src={img} alt="" widths={[480, 720, 960]} sizes="(min-width: 900px) 46vw, 100vw"
+                loading="lazy" decoding={i === 0 ? 'auto' : 'async'} fetchpriority="low" data-frame={i} data-active={i === 0 ? '' : undefined} />
+            ))}
+            {g.gallery && (
+              <span class="card-count" aria-hidden="true"><Icon name="images" size={14} /><span data-count>1</span>/{g.gallery.length + 1}</span>
+            )}
+          </a>
+          <div class="card-body">
+            <h3 class="card-title">
+              <a href={g.itch}>{g.title}</a>
+              {g.inDevelopment && <span class="badge">{s.inDev}</span>}
+            </h3>
+            <ul class="tags" role="list">
+              {g.tags[lang].map((tag) => <li>{tag}</li>)}
+            </ul>
+            <p class="card-pitch">{g.pitch[lang]}</p>
+            <div class="card-actions">
+              <a class="btn btn-secondary" href={g.itch}><Icon name="play" size={14} /> {s.play}<span class="visually-hidden">: {g.title}</span></a>
+              {g.source
+                ? <a class="btn btn-ghost" href={g.source}><Icon name="code" size={16} /> {s.source}<span class="visually-hidden">: {g.title}</span></a>
+                : <span class="muted-note"><Icon name="code" size={16} /> {s.sourceNone}</span>}
+            </div>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="contact" id="iletisim" aria-labelledby="contact-title">
+    <div class="section-head">
+      <h2 id="contact-title">{s.contactHeading}</h2>
+      <p>{s.contactIntro}</p>
+    </div>
+    <ul class="contact-list" role="list">
+      {contacts.map((c) => (
+        <li>
+          {c.href
+            ? <a class="contact-card" href={c.href} title={c.detail || undefined}>
+                <Icon name={c.icon} size={20} />
+                <span class="contact-text"><span class="contact-label">{c.label}</span>{c.detail && <span class="contact-detail">{c.detail}</span>}</span>
+                <Icon name="arrow" size={16} class="contact-arrow" />
+              </a>
+            : <span class="contact-card is-empty"><Icon name={c.icon} size={20} /> {c.label}: {s.notAdded}</span>}
+        </li>
+      ))}
+    </ul>
+  </section>
+</main>
+
+<footer class="foot">
+  <p>© 2026 {profile.name} ({profile.handle})</p>
+  <p>{s.footer}</p>
+</footer>
+
+<script>
+  // Featured screenshots: slow crossfade loop, paused on hover/focus and under reduced motion
+  const cab = document.querySelector<HTMLElement>('[data-attract]');
+  if (cab) {
+    const shots = [...cab.querySelectorAll<HTMLElement>('[data-shot]')];
+    const dots = [...cab.querySelectorAll<HTMLButtonElement>('[data-pip]')];
+    const pauseBtn = cab.querySelector<HTMLButtonElement>('[data-pause]')!;
+    const screen = cab.querySelector<HTMLElement>('.screen')!;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let i = 0;
+    let userPaused = reduced;
+    let hover = false;
+    let timer: number | undefined;
+
+    const show = (n: number) => {
+      i = (n + shots.length) % shots.length;
+      shots.forEach((el, k) => {
+        el.toggleAttribute('data-active', k === i);
+        if (k === i) el.removeAttribute('aria-hidden');
+        else el.setAttribute('aria-hidden', 'true');
+      });
+      dots.forEach((p, k) => (k === i ? p.setAttribute('aria-current', 'true') : p.removeAttribute('aria-current')));
+      document.querySelectorAll<HTMLElement>('[data-bd]').forEach((el, k) => el.toggleAttribute('data-active', k === i));
+    };
+    const running = () => !userPaused && !hover && !document.hidden;
+    const schedule = () => {
+      window.clearInterval(timer);
+      if (running()) timer = window.setInterval(() => show(i + 1), 5000);
+    };
+    const syncPause = () => {
+      cab.toggleAttribute('data-paused', userPaused);
+      pauseBtn.setAttribute('aria-label', (userPaused ? pauseBtn.dataset.labelPlay : pauseBtn.dataset.labelPause) ?? '');
+    };
+
+    dots.forEach((p, k) => p.addEventListener('click', () => { show(k); schedule(); }));
+    pauseBtn.addEventListener('click', () => { userPaused = !userPaused; syncPause(); schedule(); });
+    screen.addEventListener('pointerenter', () => { hover = true; schedule(); });
+    screen.addEventListener('pointerleave', () => { hover = false; schedule(); });
+    cab.addEventListener('focusin', () => { hover = true; schedule(); });
+    cab.addEventListener('focusout', () => { hover = false; schedule(); });
+    document.addEventListener('visibilitychange', schedule);
+    syncPause();
+    schedule();
+  }
+
+  // Game cards: cycle the card's own screenshots while hovered or focused
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll<HTMLElement>('[data-gallery]').forEach((card) => {
+      const frames = [...card.querySelectorAll<HTMLImageElement>('img[data-frame]')];
+      if (frames.length < 2) return;
+      let k = 0;
+      let t: number | undefined;
+      const ready = (img: HTMLImageElement) => img.complete && img.naturalWidth > 0;
+      // warm the hidden frames so a hover never cuts to an unloaded (black) image
+      card.addEventListener('pointerenter', () => frames.forEach((f) => { f.loading = 'eager'; }), { once: true });
+      const go = (n: number) => {
+        const next = n % frames.length;
+        if (!ready(frames[next])) return; // keep the current frame until the next one has loaded
+        k = next;
+        frames.forEach((f, j) => f.toggleAttribute('data-active', j === k));
+        const c = card.querySelector('[data-count]');
+        if (c) c.textContent = String(k + 1);
+      };
+      const start = () => { window.clearInterval(t); t = window.setInterval(() => go(k + 1), 1100); go(1); };
+      const stop = () => { window.clearInterval(t); go(0); };
+      card.addEventListener('pointerenter', start);
+      card.addEventListener('pointerleave', stop);
+      card.addEventListener('focusin', start);
+      card.addEventListener('focusout', (e) => { if (!card.contains(e.relatedTarget as Node)) stop(); });
+    });
+  }
+</script>
+
+<style>
+  /* ---------- Header ---------- */
+  .site-header {
+    position: sticky; top: 0; z-index: 30;
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    gap: 16px;
+    padding: 14px var(--gutter);
+    background: rgb(15 17 21 / 0.94);
+    border-bottom: 1px solid var(--border);
+  }
+  .site-header a { text-decoration: none; }
+  .brand { display: inline-flex; align-items: baseline; gap: 8px; justify-self: start; }
+  .brand-name { font-weight: 650; font-size: 1.0625rem; letter-spacing: -0.01em; }
+  .brand-handle { color: var(--text-3); font-size: 0.9375rem; }
+  .nav { display: flex; gap: 4px; }
+  .nav a {
+    color: var(--text-2); font-size: 0.9375rem; font-weight: 500;
+    padding: 8px 14px; border-radius: var(--radius-sm);
+    transition: color 150ms, background-color 150ms;
+  }
+  .nav a:hover { color: var(--text); background: var(--surface-2); }
+  .lang {
+    justify-self: end;
+    display: flex; padding: 3px; gap: 2px;
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  }
+  .lang a {
+    font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.02em;
+    color: var(--text-3); padding: 5px 10px; border-radius: var(--radius-sm);
+    transition: color 150ms, background-color 150ms;
+  }
+  .lang a:hover { color: var(--text); }
+  .lang a[aria-current="page"] { background: var(--surface-3); color: var(--text); }
+
+  /* ---------- Hero: cinematic backdrop from the featured game's current shot ---------- */
+  .hero { position: relative; isolation: isolate; overflow: hidden; }
+  .backdrop { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+  .bd { position: absolute; inset: -80px; opacity: 0; transition: opacity 1200ms var(--ease-out); }
+  .bd[data-active] { opacity: 1; }
+  .bd :global(img) { width: 100%; height: 100%; object-fit: cover; filter: blur(56px) saturate(1.4) brightness(1.15); }
+  .backdrop::after {
+    content: ""; position: absolute; inset: 0;
+    background:
+      radial-gradient(60% 70% at 18% 52%, rgb(15 17 21 / 0.55), transparent 70%),
+      linear-gradient(90deg, rgb(15 17 21 / 0.6) 0%, rgb(15 17 21 / 0) 55%),
+      linear-gradient(180deg, transparent 0%, transparent 55%, var(--bg) 100%);
+  }
+
+  /* ---------- Intro + featured ---------- */
+  .intro {
+    display: grid;
+    grid-template-columns: minmax(300px, 0.8fr) minmax(0, 1.5fr);
+    grid-template-rows: 1fr auto auto 1fr;
+    grid-template-areas: ". feat" "player feat" "about feat" ". feat";
+    column-gap: clamp(32px, 4.5vw, 72px);
+    row-gap: 24px;
+    align-items: start;
+    max-width: 1440px; margin: 0 auto;
+    padding: clamp(28px, 4vw, 56px) var(--gutter) clamp(72px, 9vw, 120px);
+  }
+  .player { grid-area: player; }
+  .name {
+    font-size: clamp(3.25rem, 7vw, 6rem);
+    font-weight: 750; letter-spacing: -0.045em; line-height: 0.92;
+  }
+  .handle {
+    display: block; margin-top: 14px;
+    font-size: clamp(1rem, 1.4vw, 1.1875rem); font-weight: 500; letter-spacing: 0;
+    color: var(--accent);
+  }
+  .tagline {
+    margin-top: 24px;
+    font-size: clamp(1.125rem, 1.45vw, 1.3125rem); line-height: 1.5;
+    color: var(--text); max-width: 32ch;
+  }
+  .about { grid-area: about; display: grid; gap: 12px; color: var(--text-2); max-width: 46ch; }
+  .links { list-style: none; padding: 0; margin: 12px 0 0; display: flex; flex-wrap: wrap; gap: 10px; }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    min-height: 40px; padding: 8px 16px;
+    font: inherit; font-size: 0.9375rem; font-weight: 550; line-height: 1.2;
+    border-radius: var(--radius-sm); border: 1px solid transparent;
+    text-decoration: none; cursor: pointer;
+    transition: background-color 150ms, border-color 150ms, color 150ms, transform 150ms var(--ease-out);
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn-primary { background: var(--accent-strong); color: var(--accent-ink); min-height: 44px; padding: 10px 22px; font-size: 1rem; }
+  .btn-primary:hover { background: var(--accent-strong-hover); }
+  .btn-secondary { background: var(--surface-2); border-color: var(--border-strong); color: var(--text); }
+  .btn-secondary:hover { background: var(--surface-3); border-color: var(--border-hover); }
+  .btn-ghost { color: var(--text-2); border-color: var(--border); }
+  .btn-ghost:hover { color: var(--text); background: var(--surface-2); }
+  .muted-note { display: inline-flex; align-items: center; gap: 6px; color: var(--text-3); font-size: 0.875rem; }
+
+  /* Featured card */
+  .featured {
+    grid-area: feat;
+    background: rgb(22 25 32 / 0.92);
+    border: 1px solid color-mix(in oklab, var(--hue) 28%, var(--border));
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+  }
+  .screen { position: relative; aspect-ratio: 16 / 9; background: #000; }
+  .shot {
+    position: absolute; inset: 0; margin: 0;
+    opacity: 0; transition: opacity 700ms var(--ease-out);
+  }
+  .shot[data-active] { opacity: 1; }
+  .shot :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  .screen-pause {
+    position: absolute; right: 14px; top: 14px;
+    display: grid; place-items: center;
+    width: 32px; height: 32px; padding: 0;
+    color: #fff; background: rgb(10 12 16 / 0.62);
+    border: 1px solid rgb(255 255 255 / 0.16); border-radius: 999px;
+    cursor: pointer; transition: background-color 150ms;
+  }
+  .screen-pause:hover { background: rgb(10 12 16 / 0.85); }
+  .screen-pause :global(.i-play) { display: none; }
+  .featured[data-paused] .screen-pause :global(.i-play) { display: block; }
+  .featured[data-paused] .screen-pause :global(.i-pause) { display: none; }
+  /* Steam-style media strip */
+  .filmstrip {
+    display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px;
+    padding: 10px clamp(12px, 1.6vw, 16px);
+    background: #12151b; border-bottom: 1px solid var(--border);
+  }
+  .frame {
+    position: relative; padding: 0; border: 0; cursor: pointer;
+    aspect-ratio: 16 / 9; border-radius: 6px; overflow: hidden; background: #000;
+    opacity: 0.55;
+    transition: opacity 200ms var(--ease-out);
+  }
+  .frame :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  .frame::after {
+    content: ""; position: absolute; inset: 0; border-radius: 6px;
+    box-shadow: inset 0 0 0 2px transparent; transition: box-shadow 200ms var(--ease-out);
+  }
+  .frame:hover { opacity: 0.85; }
+  .frame[aria-current="true"] { opacity: 1; }
+  .frame[aria-current="true"]::after { box-shadow: inset 0 0 0 2px var(--hue, var(--accent)); }
+
+  .featured-body { display: grid; gap: 18px; padding: 22px clamp(20px, 2.2vw, 28px) 26px; }
+  .featured-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 24px; }
+  .featured-top .actions { gap: 10px 16px; }
+  .featured-body h2 { font-size: clamp(1.75rem, 2.6vw, 2.25rem); font-weight: 750; letter-spacing: -0.03em; line-height: 1.05; }
+  /* editorial colophon: label over value, divided by hairlines */
+  .facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 0; border-block: 1px solid var(--border); }
+  .facts > div { padding: 12px 16px 12px 0; }
+  .facts > div + div { padding-left: 16px; border-left: 1px solid var(--border); }
+  .facts dt { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: color-mix(in oklab, var(--hue) 70%, var(--text-2)); }
+  .facts dd { margin: 4px 0 0; font-size: 0.9375rem; font-weight: 550; color: var(--text); }
+  .tags {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-wrap: wrap; gap: 6px;
+  }
+  .tags li {
+    font-size: 0.8125rem; font-weight: 500;
+    color: color-mix(in oklab, var(--hue, var(--text-2)) 55%, var(--text));
+    background: color-mix(in oklab, var(--hue, var(--surface-2)) 10%, var(--surface-2));
+    border: 1px solid color-mix(in oklab, var(--hue, var(--border)) 26%, var(--border));
+    padding: 3px 10px; border-radius: 999px;
+  }
+  .tags a { color: var(--text); }
+  .pitch { color: var(--text-2); max-width: 64ch; font-size: 1.0625rem; }
+  .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
+  .hint { color: var(--text-3); font-size: 0.875rem; }
+
+  /* ---------- Sections ---------- */
+  .games, .contact { max-width: 1440px; margin: 0 auto; padding: 0 var(--gutter) clamp(72px, 9vw, 120px); }
+  .section-head { display: grid; gap: 8px; margin-bottom: 28px; padding-top: 20px; border-top: 1px solid var(--border-strong); }
+  .section-head h2 { font-size: clamp(1.75rem, 3.4vw, 2.75rem); font-weight: 750; letter-spacing: -0.035em; line-height: 1.05; }
+  .section-head p { color: var(--text-2); }
+
+  .game-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 20px; }
+  .card { grid-column: span 2; }
+  .card:nth-child(-n + 2) { grid-column: span 3; }
+  .card {
+    display: grid; grid-template-rows: auto 1fr;
+    background: var(--surface);
+    border: 1px solid color-mix(in oklab, var(--hue) 18%, var(--border));
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: border-color 250ms, box-shadow 250ms, transform 300ms var(--ease-out);
+  }
+  .card:hover, .card:focus-within {
+    border-color: color-mix(in oklab, var(--hue) 55%, var(--border));
+    box-shadow: var(--shadow-lift), 0 0 0 1px color-mix(in oklab, var(--hue) 25%, transparent);
+    transform: translateY(-3px);
+  }
+  .card-media { position: relative; display: block; aspect-ratio: 16 / 9; background: #000; overflow: hidden; }
+  .card-media :global(img) {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    opacity: 0; transition: opacity 450ms var(--ease-out);
+  }
+  .card-media :global(img[data-active]) { opacity: 1; }
+  .card-count {
+    position: absolute; right: 12px; bottom: 12px;
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 0.75rem; font-weight: 600; font-variant-numeric: tabular-nums; color: #fff;
+    background: rgb(10 12 16 / 0.72); padding: 3px 9px 3px 7px; border-radius: 999px;
+    opacity: 0; transition: opacity 200ms var(--ease-out);
+  }
+  .card:hover .card-count, .card:focus-within .card-count { opacity: 1; }
+  @media (hover: none) { .card-count { display: none; } }
+  .card-body { display: grid; grid-template-rows: auto auto 1fr auto; gap: 12px; padding: 20px 22px 22px; border-top: 2px solid var(--hue); }
+  .card-title { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; font-size: 1.375rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; }
+  .card-title a { text-decoration: none; }
+  .card-title a:hover { color: var(--hue); }
+  .badge {
+    font-size: 0.75rem; font-weight: 600;
+    color: var(--text); background: var(--surface-3);
+    border: 1px solid var(--border-strong);
+    padding: 2px 8px; border-radius: 999px;
+  }
+  .card-pitch { color: var(--text-2); font-size: 0.9375rem; }
+  .card-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin-top: 4px; }
+
+  /* Contact */
+  .contact-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+  .contact-card {
+    display: flex; align-items: center; gap: 14px;
+    padding: 16px 18px; min-height: 64px;
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    text-decoration: none; color: var(--text);
+    transition: border-color 200ms, background-color 200ms;
+  }
+  a.contact-card:hover { border-color: var(--border-strong); background: var(--surface-hover); }
+  a.contact-card:hover :global(.contact-arrow) { color: var(--accent); transform: translate(2px, -2px); }
+  .contact-card > :global(.icon:first-child) { color: var(--text-2); }
+  .contact-text { display: grid; min-width: 0; flex: 1; }
+  .contact-label { font-weight: 600; font-size: 0.9375rem; }
+  .contact-detail { color: var(--text-3); font-size: 0.8125rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .contact-card :global(.contact-arrow) { color: var(--text-3); transition: transform 200ms var(--ease-out), color 200ms; }
+  .contact-card.is-empty { color: var(--text-3); border-style: dashed; }
+
+  .foot {
+    display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px;
+    max-width: 1440px; margin: 0 auto;
+    padding: 24px var(--gutter) 32px;
+    border-top: 1px solid var(--border);
+    color: var(--text-3); font-size: 0.875rem;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 1099px) {
+    .backdrop::after { background: linear-gradient(180deg, rgb(15 17 21 / 0.5) 0%, rgb(15 17 21 / 0.45) 45%, var(--bg) 100%); }
+    .intro { grid-template-columns: 1fr; grid-template-rows: none; grid-template-areas: "player" "feat" "about"; row-gap: 28px; }
+    .player { padding-top: 0; }
+    .tagline { max-width: 42ch; }
+    .about { max-width: 62ch; }
+  }
+  @media (max-width: 860px) {
+    .site-header { grid-template-columns: 1fr auto; row-gap: 6px; padding-block: 10px 6px; }
+    .nav { grid-column: 1 / -1; grid-row: 2; justify-content: space-between; margin-inline: -14px; }
+    .nav a { padding: 10px 14px; }
+    .game-grid { grid-template-columns: 1fr; }
+    .card, .card:nth-child(-n + 2) { grid-column: auto; }
+    .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .facts > div + div:nth-child(3) { padding-left: 0; border-left: 0; }
+    .facts > div:nth-child(n + 3) { border-top: 1px solid var(--border); }
+  }
+  @media (max-width: 560px) {
+    .card-body { padding: 18px; }
+    .featured-top .actions, .actions { flex-direction: column; align-items: stretch; width: 100%; }
+    .actions .btn-primary { width: 100%; }
+    .hint { margin-right: 0; text-align: center; }
+    .actions .muted-note { justify-content: center; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, .shot { transition: none !important; }
+    .card:hover, .card:focus-within { transform: none; }
+  }
+</style>

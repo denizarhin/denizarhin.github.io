@@ -1,0 +1,656 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-21T18:37:14Z",
+  "title": "Design System: d3xs",
+  "extensions": {
+    "colorMeta": {
+      "accent-strong": {
+        "role": "primary",
+        "displayName": "Signal Blue",
+        "canonical": "#2a6cf0",
+        "tonalRamp": [
+          "oklch(15% 0.079 262)",
+          "oklch(26% 0.11 262)",
+          "oklch(37% 0.14 262)",
+          "oklch(48% 0.171 262)",
+          "oklch(59% 0.179 262)",
+          "oklch(70% 0.149 262)",
+          "oklch(82% 0.115 262)",
+          "oklch(95% 0.079 262)"
+        ]
+      },
+      "accent-strong-hover": {
+        "role": "primary",
+        "displayName": "Signal Blue Hover",
+        "canonical": "#3b7bf7",
+        "tonalRamp": [
+          "oklch(15% 0.075 262)",
+          "oklch(26% 0.104 262)",
+          "oklch(37% 0.133 262)",
+          "oklch(48% 0.162 262)",
+          "oklch(59% 0.17 262)",
+          "oklch(70% 0.141 262)",
+          "oklch(82% 0.109 262)",
+          "oklch(95% 0.075 262)"
+        ]
+      },
+      "accent": {
+        "role": "primary",
+        "displayName": "Link Blue",
+        "canonical": "#5b95ff",
+        "tonalRamp": [
+          "oklch(15% 0.071 262)",
+          "oklch(26% 0.098 262)",
+          "oklch(37% 0.125 262)",
+          "oklch(48% 0.153 262)",
+          "oklch(59% 0.16 262)",
+          "oklch(70% 0.133 262)",
+          "oklch(82% 0.103 262)",
+          "oklch(95% 0.071 262)"
+        ]
+      },
+      "accent-hover": {
+        "role": "primary",
+        "displayName": "Link Blue Hover",
+        "canonical": "#7aa9ff",
+        "tonalRamp": [
+          "oklch(15% 0.059 262)",
+          "oklch(26% 0.081 262)",
+          "oklch(37% 0.103 262)",
+          "oklch(48% 0.126 262)",
+          "oklch(59% 0.132 262)",
+          "oklch(70% 0.109 262)",
+          "oklch(82% 0.085 262)",
+          "oklch(95% 0.059 262)"
+        ]
+      },
+      "accent-ink": {
+        "role": "neutral",
+        "displayName": "Button Ink",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "oklch(15% 0.0 0)",
+          "oklch(26% 0.0 0)",
+          "oklch(37% 0.0 0)",
+          "oklch(48% 0.0 0)",
+          "oklch(59% 0.0 0)",
+          "oklch(70% 0.0 0)",
+          "oklch(82% 0.0 0)",
+          "oklch(95% 0.0 0)"
+        ]
+      },
+      "bg": {
+        "role": "neutral",
+        "displayName": "Graphite Ground",
+        "canonical": "#0f1115",
+        "tonalRamp": [
+          "oklch(15% 0.005 264)",
+          "oklch(26% 0.007 264)",
+          "oklch(37% 0.009 264)",
+          "oklch(48% 0.011 264)",
+          "oklch(59% 0.011 264)",
+          "oklch(70% 0.009 264)",
+          "oklch(82% 0.007 264)",
+          "oklch(95% 0.005 264)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Graphite Surface",
+        "canonical": "#161920",
+        "tonalRamp": [
+          "oklch(15% 0.006 264)",
+          "oklch(26% 0.008 264)",
+          "oklch(37% 0.01 264)",
+          "oklch(48% 0.013 264)",
+          "oklch(59% 0.013 264)",
+          "oklch(70% 0.011 264)",
+          "oklch(82% 0.009 264)",
+          "oklch(95% 0.006 264)"
+        ]
+      },
+      "surface-hover": {
+        "role": "neutral",
+        "displayName": "Hover Surface",
+        "canonical": "#191c24",
+        "tonalRamp": [
+          "oklch(15% 0.006 264)",
+          "oklch(26% 0.009 264)",
+          "oklch(37% 0.011 264)",
+          "oklch(48% 0.013 264)",
+          "oklch(59% 0.014 264)",
+          "oklch(70% 0.012 264)",
+          "oklch(82% 0.009 264)",
+          "oklch(95% 0.006 264)"
+        ]
+      },
+      "surface-2": {
+        "role": "neutral",
+        "displayName": "Raised Surface",
+        "canonical": "#1d2129",
+        "tonalRamp": [
+          "oklch(15% 0.007 264)",
+          "oklch(26% 0.009 264)",
+          "oklch(37% 0.012 264)",
+          "oklch(48% 0.014 264)",
+          "oklch(59% 0.015 264)",
+          "oklch(70% 0.013 264)",
+          "oklch(82% 0.01 264)",
+          "oklch(95% 0.007 264)"
+        ]
+      },
+      "surface-3": {
+        "role": "neutral",
+        "displayName": "Top Surface",
+        "canonical": "#252a34",
+        "tonalRamp": [
+          "oklch(15% 0.008 264)",
+          "oklch(26% 0.01 264)",
+          "oklch(37% 0.013 264)",
+          "oklch(48% 0.016 264)",
+          "oklch(59% 0.017 264)",
+          "oklch(70% 0.014 264)",
+          "oklch(82% 0.011 264)",
+          "oklch(95% 0.008 264)"
+        ]
+      },
+      "filmstrip": {
+        "role": "neutral",
+        "displayName": "Filmstrip",
+        "canonical": "#12151b",
+        "tonalRamp": [
+          "oklch(15% 0.005 264)",
+          "oklch(26% 0.008 264)",
+          "oklch(37% 0.01 264)",
+          "oklch(48% 0.012 264)",
+          "oklch(59% 0.012 264)",
+          "oklch(70% 0.01 264)",
+          "oklch(82% 0.008 264)",
+          "oklch(95% 0.005 264)"
+        ]
+      },
+      "border": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#272c36",
+        "tonalRamp": [
+          "oklch(15% 0.008 264)",
+          "oklch(26% 0.01 264)",
+          "oklch(37% 0.013 264)",
+          "oklch(48% 0.016 264)",
+          "oklch(59% 0.017 264)",
+          "oklch(70% 0.014 264)",
+          "oklch(82% 0.011 264)",
+          "oklch(95% 0.008 264)"
+        ]
+      },
+      "border-strong": {
+        "role": "neutral",
+        "displayName": "Strong Hairline",
+        "canonical": "#363c48",
+        "tonalRamp": [
+          "oklch(15% 0.008 264)",
+          "oklch(26% 0.012 264)",
+          "oklch(37% 0.015 264)",
+          "oklch(48% 0.018 264)",
+          "oklch(59% 0.019 264)",
+          "oklch(70% 0.016 264)",
+          "oklch(82% 0.012 264)",
+          "oklch(95% 0.008 264)"
+        ]
+      },
+      "border-hover": {
+        "role": "neutral",
+        "displayName": "Hover Hairline",
+        "canonical": "#444b59",
+        "tonalRamp": [
+          "oklch(15% 0.009 264)",
+          "oklch(26% 0.013 264)",
+          "oklch(37% 0.016 264)",
+          "oklch(48% 0.02 264)",
+          "oklch(59% 0.021 264)",
+          "oklch(70% 0.017 264)",
+          "oklch(82% 0.013 264)",
+          "oklch(95% 0.009 264)"
+        ]
+      },
+      "text": {
+        "role": "neutral",
+        "displayName": "Primary Text",
+        "canonical": "#e8eaee",
+        "tonalRamp": [
+          "oklch(15% 0.003 264)",
+          "oklch(26% 0.003 264)",
+          "oklch(37% 0.004 264)",
+          "oklch(48% 0.005 264)",
+          "oklch(59% 0.006 264)",
+          "oklch(70% 0.005 264)",
+          "oklch(82% 0.004 264)",
+          "oklch(95% 0.003 264)"
+        ]
+      },
+      "text-2": {
+        "role": "neutral",
+        "displayName": "Secondary Text",
+        "canonical": "#a4aab6",
+        "tonalRamp": [
+          "oklch(15% 0.007 264)",
+          "oklch(26% 0.009 264)",
+          "oklch(37% 0.012 264)",
+          "oklch(48% 0.014 264)",
+          "oklch(59% 0.015 264)",
+          "oklch(70% 0.013 264)",
+          "oklch(82% 0.01 264)",
+          "oklch(95% 0.007 264)"
+        ]
+      },
+      "text-3": {
+        "role": "neutral",
+        "displayName": "Tertiary Text",
+        "canonical": "#7d8493",
+        "tonalRamp": [
+          "oklch(15% 0.008 264)",
+          "oklch(26% 0.012 264)",
+          "oklch(37% 0.015 264)",
+          "oklch(48% 0.018 264)",
+          "oklch(59% 0.019 264)",
+          "oklch(70% 0.016 264)",
+          "oklch(82% 0.012 264)",
+          "oklch(95% 0.008 264)"
+        ]
+      },
+      "hue-son-hasat": {
+        "role": "tertiary",
+        "displayName": "Son Hasat Lilac",
+        "canonical": "#b69cff",
+        "tonalRamp": [
+          "oklch(15% 0.063 295)",
+          "oklch(26% 0.087 295)",
+          "oklch(37% 0.111 295)",
+          "oklch(48% 0.135 295)",
+          "oklch(59% 0.141 295)",
+          "oklch(70% 0.117 295)",
+          "oklch(82% 0.091 295)",
+          "oklch(95% 0.063 295)"
+        ]
+      },
+      "hue-eggous": {
+        "role": "tertiary",
+        "displayName": "Eggous Leaf",
+        "canonical": "#7ed957",
+        "tonalRamp": [
+          "oklch(15% 0.075 135)",
+          "oklch(26% 0.104 135)",
+          "oklch(37% 0.133 135)",
+          "oklch(48% 0.162 135)",
+          "oklch(59% 0.17 135)",
+          "oklch(70% 0.141 135)",
+          "oklch(82% 0.109 135)",
+          "oklch(95% 0.075 135)"
+        ]
+      },
+      "hue-polar-clash": {
+        "role": "tertiary",
+        "displayName": "Polar Clash Ice",
+        "canonical": "#3fd8f0",
+        "tonalRamp": [
+          "oklch(15% 0.054 205)",
+          "oklch(26% 0.075 205)",
+          "oklch(37% 0.096 205)",
+          "oklch(48% 0.117 205)",
+          "oklch(59% 0.122 205)",
+          "oklch(70% 0.102 205)",
+          "oklch(82% 0.079 205)",
+          "oklch(95% 0.054 205)"
+        ]
+      },
+      "hue-takipci-avi": {
+        "role": "tertiary",
+        "displayName": "Takipçi Avı Pink",
+        "canonical": "#ff5fa2",
+        "tonalRamp": [
+          "oklch(15% 0.084 0)",
+          "oklch(26% 0.116 0)",
+          "oklch(37% 0.148 0)",
+          "oklch(48% 0.18 0)",
+          "oklch(59% 0.188 0)",
+          "oklch(70% 0.156 0)",
+          "oklch(82% 0.121 0)",
+          "oklch(95% 0.084 0)"
+        ]
+      },
+      "hue-shadebound": {
+        "role": "tertiary",
+        "displayName": "SHADEBOUND Ember",
+        "canonical": "#ff7a59",
+        "tonalRamp": [
+          "oklch(15% 0.075 38)",
+          "oklch(26% 0.104 38)",
+          "oklch(37% 0.133 38)",
+          "oklch(48% 0.162 38)",
+          "oklch(59% 0.17 38)",
+          "oklch(70% 0.141 38)",
+          "oklch(82% 0.109 38)",
+          "oklch(95% 0.075 38)"
+        ]
+      },
+      "hue-aeternus-depth": {
+        "role": "tertiary",
+        "displayName": "Aeternus Sea",
+        "canonical": "#3ccf9a",
+        "tonalRamp": [
+          "oklch(15% 0.059 165)",
+          "oklch(26% 0.081 165)",
+          "oklch(37% 0.103 165)",
+          "oklch(48% 0.126 165)",
+          "oklch(59% 0.132 165)",
+          "oklch(70% 0.109 165)",
+          "oklch(82% 0.085 165)",
+          "oklch(95% 0.059 165)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The name in the hero; once per page."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section heads under a full-width strong hairline."
+      },
+      "headline-featured": {
+        "displayName": "Featured headline",
+        "purpose": "Featured game title, sharing its row with the CTA."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Game card titles; plain text, hue on hover."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "Tagline under the name."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "About copy and featured pitch."
+      },
+      "body-sm": {
+        "displayName": "Body small",
+        "purpose": "Card pitches, nav links, contact labels."
+      },
+      "fact-value": {
+        "displayName": "Fact value",
+        "purpose": "Colophon values."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Button text."
+      },
+      "label-caps": {
+        "displayName": "Label caps",
+        "purpose": "Colophon terms only; uppercase, hue-tinted."
+      },
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "Tags, language switch, contact details."
+      }
+    },
+    "shadows": [
+      {
+        "name": "card-rest",
+        "value": "0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px -12px rgb(0 0 0 / 0.5)",
+        "purpose": "Featured card."
+      },
+      {
+        "name": "card-lift",
+        "value": "0 2px 4px rgb(0 0 0 / 0.3), 0 16px 32px -12px rgb(0 0 0 / 0.6)",
+        "purpose": "Game cards on hover/focus-within, plus a 1px 25% hue ring and a 3px rise."
+      }
+    ],
+    "backdrop": {
+      "source": "featured game's current screenshot, 480w, inset -80px",
+      "filter": "blur(56px) saturate(1.4) brightness(1.15)",
+      "wash": "radial-gradient(60% 70% at 18% 52%, rgb(15 17 21 / 0.55), transparent 70%), linear-gradient(90deg, rgb(15 17 21 / 0.6) 0%, rgb(15 17 21 / 0) 55%), linear-gradient(180deg, transparent 0%, transparent 55%, var(--bg) 100%)",
+      "washCompact": "linear-gradient(180deg, rgb(15 17 21 / 0.5) 0%, rgb(15 17 21 / 0.45) 45%, var(--bg) 100%) at <=1099px"
+    },
+    "hueMixes": [
+      {
+        "name": "card-border",
+        "value": "color-mix(in oklab, var(--hue) 18%, var(--border))"
+      },
+      {
+        "name": "featured-border",
+        "value": "color-mix(in oklab, var(--hue) 28%, var(--border))"
+      },
+      {
+        "name": "card-border-hover",
+        "value": "color-mix(in oklab, var(--hue) 55%, var(--border)) + 0 0 0 1px color-mix(in oklab, var(--hue) 25%, transparent)"
+      },
+      {
+        "name": "card-rule",
+        "value": "border-top: 2px solid var(--hue)"
+      },
+      {
+        "name": "tag",
+        "value": "text 55% into --text; bg 10% into --surface-2; border 26% into --border"
+      },
+      {
+        "name": "colophon-term",
+        "value": "color-mix(in oklab, var(--hue) 70%, var(--text-2))"
+      },
+      {
+        "name": "filmstrip-active",
+        "value": "inset 0 0 0 2px var(--hue, var(--accent))"
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Every crossfade, lift, frame fade and arrow nudge."
+      },
+      {
+        "name": "state-fast",
+        "value": "150ms",
+        "purpose": "Color, background and border transitions on buttons, nav and the pause control."
+      },
+      {
+        "name": "card-state",
+        "value": "250ms; transform 300ms; lift 3px",
+        "purpose": "Game card hover/focus."
+      },
+      {
+        "name": "contact-state",
+        "value": "200ms",
+        "purpose": "Contact card hover and arrow nudge."
+      },
+      {
+        "name": "backdrop-crossfade",
+        "value": "1200ms opacity",
+        "purpose": "Hero backdrop follows the carousel."
+      },
+      {
+        "name": "shot-crossfade",
+        "value": "700ms opacity, every 5000ms",
+        "purpose": "Featured carousel, opening on the Son Hasat main menu; pauses on hover, focus inside the card, hidden tab and user pause; starts paused under reduced motion."
+      },
+      {
+        "name": "frame-fade",
+        "value": "200ms opacity 55% / 85% / 100%",
+        "purpose": "Filmstrip frames at rest, hover and current."
+      },
+      {
+        "name": "card-gallery",
+        "value": "step every 1100ms, 450ms crossfade",
+        "purpose": "Card media on hover/focus, only to loaded frames; back to cover on leave; off under reduced motion."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "transition: none; no lift; no gallery cycling",
+        "purpose": "prefers-reduced-motion removes all transitions, lifts and auto-advance."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "stack-intro",
+        "value": "1099px"
+      },
+      {
+        "name": "compact",
+        "value": "860px"
+      },
+      {
+        "name": "phone",
+        "value": "560px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one filled action per context; always blue, never the game hue.",
+      "html": "<a class=\"ds-btn ds-btn-primary\" href=\"#\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M7 4.5v15l12-7.5z\" fill=\"currentColor\"/></svg><span>Oyna</span></a>",
+      "css": ".ds-btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:40px; padding:8px 16px; font-family:Geist, system-ui, -apple-system, 'Segoe UI', sans-serif; font-size:0.9375rem; font-weight:550; line-height:1.2; border-radius:8px; border:1px solid transparent; text-decoration:none; cursor:pointer; transition:background-color 150ms, border-color 150ms, color 150ms, transform 150ms cubic-bezier(0.16,1,0.3,1); } .ds-btn:active { transform:translateY(1px); } .ds-btn:focus-visible { outline:2px solid #5b95ff; outline-offset:3px; } .ds-btn-primary { background:#2a6cf0; color:#fff; min-height:44px; padding:10px 22px; font-size:1rem; } .ds-btn-primary:hover { background:#3b7bf7; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Raised-surface button for profile links and card Play actions.",
+      "html": "<a class=\"ds-btn ds-btn-secondary\" href=\"#\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m8 8-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14\"/></svg> GitHub</a>",
+      "css": ".ds-btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:40px; padding:8px 16px; font-family:Geist, system-ui, -apple-system, 'Segoe UI', sans-serif; font-size:0.9375rem; font-weight:550; line-height:1.2; border-radius:8px; border:1px solid transparent; text-decoration:none; cursor:pointer; transition:background-color 150ms, border-color 150ms, color 150ms, transform 150ms cubic-bezier(0.16,1,0.3,1); } .ds-btn:active { transform:translateY(1px); } .ds-btn:focus-visible { outline:2px solid #5b95ff; outline-offset:3px; } .ds-btn-secondary { background:#1d2129; border-color:#363c48; color:#e8eaee; } .ds-btn-secondary:hover { background:#252a34; border-color:#444b59; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Hairline-only button for the Source link on cards.",
+      "html": "<a class=\"ds-btn ds-btn-ghost\" href=\"#\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m8 8-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14\"/></svg> Kaynak</a>",
+      "css": ".ds-btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:40px; padding:8px 16px; font-family:Geist, system-ui, -apple-system, 'Segoe UI', sans-serif; font-size:0.9375rem; font-weight:550; line-height:1.2; border-radius:8px; border:1px solid transparent; text-decoration:none; cursor:pointer; transition:background-color 150ms, border-color 150ms, color 150ms, transform 150ms cubic-bezier(0.16,1,0.3,1); } .ds-btn:active { transform:translateY(1px); } .ds-btn:focus-visible { outline:2px solid #5b95ff; outline-offset:3px; } .ds-btn-ghost { background:transparent; color:#a4aab6; border-color:#272c36; } .ds-btn-ghost:hover { color:#e8eaee; background:#1d2129; }"
+    },
+    {
+      "name": "Hue Tags and Badge",
+      "kind": "chip",
+      "refersTo": "tag",
+      "description": "Tags tinted by the game's --hue via color-mix; the in-development badge stays neutral.",
+      "html": "<div style=\"--hue:#7ed957\"><ul class=\"ds-tags\"><li>Co-op</li><li>Unity</li><li class=\"ds-badge\">Geliştirmede</li></ul></div>",
+      "css": ".ds-tags { font-family:Geist, system-ui, -apple-system, 'Segoe UI', sans-serif; list-style:none; padding:0; margin:0; display:flex; flex-wrap:wrap; gap:6px; } .ds-tags li { font-size:0.8125rem; font-weight:500; color:color-mix(in oklab, var(--hue, #a4aab6) 55%, #e8eaee); background:color-mix(in oklab, var(--hue, #1d2129) 10%, #1d2129); border:1px solid color-mix(in oklab, var(--hue, #272c36) 26%, #272c36); padding:3px 10px; border-radius:999px; } .ds-tags li.ds-badge { font-size:0.75rem; font-weight:600; color:#e8eaee; background:#252a34; border-color:#363c48; padding:2px 8px; }"
+    },
+    {
+      "name": "Section Nav",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Sticky header nav links with the TR/EN segmented switch.",
+      "html": "<div class=\"ds-nav\"><a href=\"#\">Hakkımda</a><a href=\"#\">Oyunlar</a><a href=\"#\">İletişim</a><span class=\"ds-lang\"><a href=\"#\" aria-current=\"page\">TR</a><a href=\"#\">EN</a></span></div>",
+      "css": ".ds-nav { display:flex; align-items:center; gap:4px; font-family:Geist, system-ui, -apple-system, 'Segoe UI', sans-serif; padding:14px 16px; background:rgb(15 17 21 / 0.94); border-bottom:1px solid #272c36; } .ds-nav > a { color:#a4aab6; font-size:0.9375rem; font-weight:500; padding:8px 14px; border-radius:8px; text-decoration:none; transition:color 150ms, background-color 150ms; } .ds-nav > a:hover { color:#e8eaee; background:#1d2129; } .ds-nav a:focus-visible { outline:2px solid #5b95ff; outline-offset:3px; } .ds-lang { margin-left:auto; display:flex; gap:2px; padding:3px; background:#161920; border:1px solid #272c36; border-radius:12px; } .ds-lang a { font-size:0.8125rem; font-weight:600; letter-spacing:0.02em; color:#7d8493; padding:5px 10px; border-radius:8px; text-decoration:none; transition:color 150ms, background-color 150ms; } .ds-lang a:hover { color:#e8eaee; } .ds-lang a[aria-current=page] { background:#252a34; color:#e8eaee; }"
+    },
+    {
+      "name": "Section Head",
+      "kind": "custom",
+      "refersTo": "headline",
+      "description": "Editorial section head under a full-width strong hairline.",
+      "html": "<div class=\"ds-head\"><h2>Oyunlar</h2><p>Unity ile yaptığım diğer oyunlar.</p></div>",
+      "css": ".ds-head { font-family:Geist, system-ui, -apple-system, 'Segoe UI', sans-serif; display:grid; gap:8px; padding-top:20px; border-top:1px solid #363c48; color:#e8eaee; } .ds-head h2 { margin:0; font-size:clamp(1.75rem, 3.4vw, 2.75rem); font-weight:750; letter-spacing:-0.035em; line-height:1.05; } .ds-head p { margin:0; color:#a4aab6; }"
+    },
+    {
+      "name": "Featured Card",
+      "kind": "card",
+      "refersTo": "card-featured",
+      "description": "Hue-bordered screenshot card: stage with top-right pause, five-frame filmstrip, title row with the blue CTA, ruled colophon.",
+      "html": "<article class=\"ds-feat\" style=\"--hue:#b69cff\"><div class=\"ds-screen\"><button class=\"ds-pause\" type=\"button\" aria-label=\"Duraklat\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M8 5v14M16 5v14\"/></svg></button></div><div class=\"ds-strip\"><button class=\"ds-frame\" type=\"button\" aria-label=\"1 / 5\" aria-current=\"true\"></button><button class=\"ds-frame\" type=\"button\" aria-label=\"2 / 5\"></button><button class=\"ds-frame\" type=\"button\" aria-label=\"3 / 5\"></button><button class=\"ds-frame\" type=\"button\" aria-label=\"4 / 5\"></button><button class=\"ds-frame\" type=\"button\" aria-label=\"5 / 5\"></button></div><div class=\"ds-body\"><div class=\"ds-top\"><h2>Son Hasat</h2><div class=\"ds-actions\"><a class=\"ds-play\" href=\"#\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M7 4.5v15l12-7.5z\" fill=\"currentColor\"/></svg>Oyna</a><span class=\"ds-hint\">itch.io’da indir</span><span class=\"ds-muted\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m8 8-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14\"/></svg> Kaynak kapalı</span></div></div><dl class=\"ds-facts\"><div><dt>Tür</dt><dd>Gerilim · Bulmaca</dd></div><div><dt>Oyuncu</dt><dd>1–4, LAN co-op</dd></div><div><dt>Bakış</dt><dd>Birinci şahıs</dd></div><div><dt>Motor</dt><dd>Unity</dd></div></dl></div></article>",
+      "css": ".ds-feat { font-family:Geist, system-ui, -apple-system, 'Segoe UI', sans-serif; color:#e8eaee; background:rgb(22 25 32 / 0.92); border:1px solid color-mix(in oklab, var(--hue) 28%, #272c36); border-radius:16px; overflow:hidden; box-shadow:0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px -12px rgb(0 0 0 / 0.5); max-width:640px; } .ds-screen { position:relative; aspect-ratio:16/9; background:#000; } .ds-pause { position:absolute; right:14px; top:14px; display:grid; place-items:center; width:32px; height:32px; padding:0; color:#fff; background:rgb(10 12 16 / 0.62); border:1px solid rgb(255 255 255 / 0.16); border-radius:999px; cursor:pointer; transition:background-color 150ms; } .ds-pause:hover { background:rgb(10 12 16 / 0.85); } .ds-pause:focus-visible { outline:2px solid #5b95ff; outline-offset:3px; } .ds-strip { display:grid; grid-template-columns:repeat(5, minmax(0,1fr)); gap:8px; padding:10px 16px; background:#12151b; border-bottom:1px solid #272c36; } .ds-frame { position:relative; padding:0; border:0; cursor:pointer; aspect-ratio:16/9; border-radius:6px; background:linear-gradient(135deg,#363c48,#000); opacity:0.55; transition:opacity 200ms cubic-bezier(0.16,1,0.3,1); } .ds-frame::after { content:''; position:absolute; inset:0; border-radius:6px; box-shadow:inset 0 0 0 2px transparent; transition:box-shadow 200ms cubic-bezier(0.16,1,0.3,1); } .ds-frame:hover { opacity:0.85; } .ds-frame[aria-current=true] { opacity:1; } .ds-frame[aria-current=true]::after { box-shadow:inset 0 0 0 2px var(--hue, #5b95ff); } .ds-frame:focus-visible { outline:2px solid #5b95ff; outline-offset:3px; } .ds-body { display:grid; gap:18px; padding:22px 24px 26px; } .ds-top { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:14px 24px; } .ds-top h2 { margin:0; font-size:2rem; font-weight:750; letter-spacing:-0.03em; line-height:1.05; } .ds-actions { display:flex; flex-wrap:wrap; align-items:center; gap:10px 16px; } .ds-play { display:inline-flex; align-items:center; gap:8px; min-height:44px; padding:10px 22px; background:#2a6cf0; color:#fff; border-radius:8px; font-weight:550; text-decoration:none; transition:background-color 150ms; } .ds-play:hover { background:#3b7bf7; } .ds-play:focus-visible { outline:2px solid #5b95ff; outline-offset:3px; } .ds-hint { color:#7d8493; font-size:0.875rem; } .ds-muted { display:inline-flex; align-items:center; gap:6px; color:#7d8493; font-size:0.875rem; } .ds-facts { display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); margin:0; border-block:1px solid #272c36; } .ds-facts > div { padding:12px 16px 12px 0; } .ds-facts > div + div { padding-left:16px; border-left:1px solid #272c36; } .ds-facts dt { font-size:0.75rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:color-mix(in oklab, var(--hue) 70%, #a4aab6); } .ds-facts dd { margin:4px 0 0; font-size:0.9375rem; font-weight:550; color:#e8eaee; }"
+    },
+    {
+      "name": "Game Card",
+      "kind": "card",
+      "refersTo": "card-game",
+      "description": "Big image-led card: 16:9 media with a hover-only gallery count, 2px hue rule, hue tags, baseline-aligned actions; lifts with a hue ring.",
+      "html": "<div class=\"ds-card\" style=\"--hue:#3fd8f0\" tabindex=\"0\"><div class=\"ds-media\"><span class=\"ds-count\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"7\" y=\"7\" width=\"14\" height=\"12\" rx=\"2\"/><path d=\"M4 15V6a2 2 0 0 1 2-2h11\"/><path d=\"m7 16 4-4 3 3 2-2 5 5\"/></svg>1/4</span></div><div class=\"ds-cbody\"><h3><a href=\"#\">Polar Clash</a></h3><ul class=\"ds-tags\"><li>PvP</li><li>Unity</li></ul><p>Kısa oyun açıklaması.</p><div class=\"ds-cacts\"><a class=\"ds-btn ds-btn-secondary\" href=\"#\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M7 4.5v15l12-7.5z\" fill=\"currentColor\"/></svg> Oyna</a><a class=\"ds-btn ds-btn-ghost\" href=\"#\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m8 8-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14\"/></svg> Kaynak</a></div></div></div>",
+      "css": ".ds-btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:40px; padding:8px 16px; font-family:Geist, system-ui, -apple-system, 'Segoe UI', sans-serif; font-size:0.9375rem; font-weight:550; line-height:1.2; border-radius:8px; border:1px solid transparent; text-decoration:none; cursor:pointer; transition:background-color 150ms, border-color 150ms, color 150ms, transform 150ms cubic-bezier(0.16,1,0.3,1); } .ds-btn:active { transform:translateY(1px); } .ds-btn:focus-visible { outline:2px solid #5b95ff; outline-offset:3px; } .ds-btn-secondary { background:#1d2129; border-color:#363c48; color:#e8eaee; } .ds-btn-secondary:hover { background:#252a34; border-color:#444b59; } .ds-btn-ghost { color:#a4aab6; border-color:#272c36; } .ds-btn-ghost:hover { color:#e8eaee; background:#1d2129; } .ds-tags { list-style:none; padding:0; margin:0; display:flex; flex-wrap:wrap; gap:6px; } .ds-tags li { font-size:0.8125rem; font-weight:500; color:color-mix(in oklab, var(--hue, #a4aab6) 55%, #e8eaee); background:color-mix(in oklab, var(--hue, #1d2129) 10%, #1d2129); border:1px solid color-mix(in oklab, var(--hue, #272c36) 26%, #272c36); padding:3px 10px; border-radius:999px; } .ds-card { font-family:Geist, system-ui, -apple-system, 'Segoe UI', sans-serif; max-width:420px; color:#e8eaee; display:grid; grid-template-rows:auto 1fr; background:#161920; border:1px solid color-mix(in oklab, var(--hue) 18%, #272c36); border-radius:16px; overflow:hidden; transition:border-color 250ms, box-shadow 250ms, transform 300ms cubic-bezier(0.16,1,0.3,1); } .ds-card:hover, .ds-card:focus-within, .ds-card:focus-visible { outline:none; border-color:color-mix(in oklab, var(--hue) 55%, #272c36); box-shadow:0 2px 4px rgb(0 0 0 / 0.3), 0 16px 32px -12px rgb(0 0 0 / 0.6), 0 0 0 1px color-mix(in oklab, var(--hue) 25%, transparent); transform:translateY(-3px); } .ds-media { position:relative; aspect-ratio:16/9; background:linear-gradient(135deg,#252a34,#000); } .ds-count { position:absolute; right:12px; bottom:12px; display:inline-flex; align-items:center; gap:6px; font-size:0.75rem; font-weight:600; font-variant-numeric:tabular-nums; color:#fff; background:rgb(10 12 16 / 0.72); padding:3px 9px 3px 7px; border-radius:999px; opacity:0; transition:opacity 200ms cubic-bezier(0.16,1,0.3,1); } .ds-card:hover .ds-count, .ds-card:focus-within .ds-count, .ds-card:focus-visible .ds-count { opacity:1; } @media (hover: none) { .ds-count { display:none; } } .ds-cbody { display:grid; grid-template-rows:auto auto 1fr auto; gap:12px; padding:20px 22px 22px; border-top:2px solid var(--hue); } .ds-cbody h3 { margin:0; font-size:1.375rem; font-weight:700; letter-spacing:-0.02em; line-height:1.2; } .ds-cbody h3 a { color:inherit; text-decoration:none; } .ds-cbody h3 a:hover { color:var(--hue); } .ds-cbody h3 a:focus-visible { outline:2px solid #5b95ff; outline-offset:3px; } .ds-cbody p { margin:0; color:#a4aab6; font-size:0.9375rem; } .ds-cacts { display:flex; flex-wrap:wrap; align-items:center; gap:10px 16px; margin-top:4px; }"
+    },
+    {
+      "name": "Contact Card",
+      "kind": "card",
+      "refersTo": "card-contact",
+      "description": "Contact link card with icon, label, truncating detail and an arrow that nudges on hover.",
+      "html": "<a class=\"ds-contact\" href=\"#\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3\" y=\"5\" width=\"18\" height=\"14\" rx=\"2.5\"/><path d=\"m4 7 8 6 8-6\"/></svg><span class=\"ds-ct\"><span class=\"ds-cl\">E-posta</span><span class=\"ds-cd\">mail@example.com</span></span><svg class=\"ds-arrow\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 17 17 7M9 7h8v8\"/></svg></a>",
+      "css": ".ds-contact { font-family:Geist, system-ui, -apple-system, 'Segoe UI', sans-serif; display:flex; align-items:center; gap:14px; padding:16px 18px; min-height:64px; max-width:280px; background:#161920; border:1px solid #272c36; border-radius:12px; color:#e8eaee; text-decoration:none; transition:border-color 200ms, background-color 200ms; } .ds-contact > svg:first-child { color:#a4aab6; } .ds-contact:hover { border-color:#363c48; background:#191c24; } .ds-contact:focus-visible { outline:2px solid #5b95ff; outline-offset:3px; } .ds-ct { display:grid; flex:1; min-width:0; } .ds-cl { font-weight:600; font-size:0.9375rem; } .ds-cd { color:#7d8493; font-size:0.8125rem; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; } .ds-arrow { color:#7d8493; transition:transform 200ms cubic-bezier(0.16,1,0.3,1), color 200ms; } .ds-contact:hover .ds-arrow { color:#5b95ff; transform:translate(2px,-2px); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Lit Developer Page",
+    "overview": "A dark developer page at ArtStation and Steam polish that four languages light up together. The first is a cinematic backdrop: the hero sits on the featured game's own screenshot, blurred into a glow. The second is per-game colour: each game carries one hue sampled from its screenshots. The third is big image-led game cards. The fourth is editorial typography: a large, tightly tracked name, ruled section heads and a colophon of facts. Under all of it the canon holds: a graphite ground, stepped surfaces, hairlines, one blue for actions and a single typeface.\n\nThe work supplies the colour. The UI owns only blue, and blue is reserved for action, links and focus. Every other hue on screen comes from a game, either its screenshots or the colour sampled from them. That colour stays on the game's own card: its border, top rule, tags, active filmstrip frame and colophon labels.\n\nMotion is slow where it carries the work and quick where it answers a pointer. The backdrop crossfades over 1200ms and the featured shot over 700ms, every 5s. Card galleries step every 1.1s while hovered. State changes take 150 to 250ms, and cards lift 3px. Reduced motion removes all of it.",
+    "keyCharacteristics": [
+      "The hero is lit by the featured game's current screenshot, blurred and washed toward the ground.",
+      "One hue per game, mixed into its own card's border, rule, tags and labels; never into an action.",
+      "One blue: filled for the primary action, lighter for links, handle and focus.",
+      "Big 16:9 image-led game cards in a 2-then-3 grid, whose galleries cycle on hover.",
+      "Editorial type: an oversized, tightly tracked name, section heads under full-width hairlines, a ruled colophon of facts.",
+      "Geist variable throughout; 6 / 8 / 12 / 16px radii; soft two-layer shadows on cards only."
+    ],
+    "rules": [
+      {
+        "name": "The One Blue Rule",
+        "body": "Blue is the only hue the interface owns, and it marks action, links and focus. A game hue never fills or tints a button, the \"Oyna / Play\" CTA above all.",
+        "section": "colors"
+      },
+      {
+        "name": "The Own Colour Rule",
+        "body": "A game's hue appears only on that game's own surface (card border, top rule, tags, filmstrip frame, colophon labels, title hover), always mixed toward the neutrals except for the 2px rule, the frame outline and the title hover. A hue never leaks onto shared chrome or another game.",
+        "section": "colors"
+      },
+      {
+        "name": "The Neutral Status Rule",
+        "body": "Status badges (\"Geliştirmede / In development\") are neutral (`text` on `surface-3` with `border-strong`). No green or other signal colour competes with the game hues.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tight Display Rule",
+        "body": "Tracking tightens as size grows: -0.045em on the display name, -0.035em on section heads, -0.03em on the featured title, -0.02em on card titles, and 0 at body size. Display and headlines set solid (0.92 to 1.05 line height).",
+        "section": "typography"
+      },
+      {
+        "name": "The Ruled Head Rule",
+        "body": "Every section head sits under a full-width Strong Hairline, with 20px above the heading. A rule plus size marks a section; no label sits above the heading.",
+        "section": "typography"
+      },
+      {
+        "name": "The Colophon Rule",
+        "body": "Uppercase tracked type is used only for the terms of a fact list (`dt`), each followed directly by its value. It is never used as a heading prefix or decoration.",
+        "section": "typography"
+      },
+      {
+        "name": "The Cards-Only Shadow Rule",
+        "body": "Shadows belong to cards. Buttons, tags, header and text never cast one.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Light From The Work Rule",
+        "body": "Ambient colour comes only from the screenshots themselves, blurred. There are no invented gradients, glows or decorative light sources.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** keep one filled Signal Blue button per context, and use Link Blue for links, the handle and focus.",
+      "**Do** give each game one hue sampled from its screenshots, and apply it only through `--hue` on that game's own card, at the documented mix strengths.",
+      "**Do** light the hero only with the featured game's current screenshot, blurred, under the documented wash.",
+      "**Do** lead game cards with a 16:9 screenshot, and keep the 2-then-3 grid with actions aligned on a shared baseline.",
+      "**Do** set section heads under a full-width Strong Hairline, and present facts as a ruled colophon.",
+      "**Do** show absent links as muted tertiary text (\"Kaynak kapalı\"), at every width.",
+      "**Do** pause any auto-advancing media on hover, focus, a hidden tab and the user's request, and start it paused (or never cycle it) under reduced motion.",
+      "**Do** draw new icons as 24px line glyphs with a 1.75 stroke and round caps and joins."
+    ],
+    "donts": [
+      "**Don't** put a game hue on a button, the CTA, the header or another game's card.",
+      "**Don't** use a signal colour (green, red) for status; badges stay neutral.",
+      "**Don't** use uppercase tracked labels as heading prefixes; uppercase is for colophon terms only.",
+      "**Don't** introduce a second typeface, or invented gradients and glows not taken from the screenshots.",
+      "**Don't** hide a missing link anywhere, so cards never lose their shape.",
+      "**Don't** put shadows on buttons, tags or text.",
+      "**Don't** filter, tint or stylize the screenshots themselves; only the backdrop copy is blurred."
+    ]
+  }
+}
