@@ -1,0 +1,214 @@
+---
+import { Image } from 'astro:assets';
+import Header from './Header.astro';
+import Icon from './Icon.astro';
+import { profile, t, type Lang } from '../data/site';
+import { allGames, details, shotsFor } from '../data/details';
+
+interface Props {
+  lang: Lang;
+  slug: string;
+}
+const { lang, slug } = Astro.props;
+const s = t[lang];
+const index = allGames.findIndex((g) => g.slug === slug);
+const game = allGames[index];
+const next = allGames[(index + 1) % allGames.length];
+const info = details[slug];
+const shots = shotsFor(slug);
+// The lead shot already sits in the hero; the gallery shows the rest.
+const gallery = shots.slice(1);
+const wideFirst = gallery.length % 2 === 1;
+const base = lang === 'tr' ? '/oyunlar/' : '/en/games/';
+const otherBase = lang === 'tr' ? '/en/games/' : '/oyunlar/';
+const home = lang === 'tr' ? '/' : '/en/';
+const download = 'download' in game ? (game as { download: string }).download : 'Windows';
+---
+<Header lang={lang} anchors={home} altHref={`${otherBase}${slug}/`} />
+
+<main id="main" class="game" style={`--hue: ${game.hue}`}>
+  <section class="hero">
+    <div class="backdrop" aria-hidden="true">
+      <Image src={shots[0]} alt="" widths={[480]} sizes="480px" loading="eager" />
+    </div>
+    <div class="hero-inner">
+      <div class="copy">
+        <a class="back" href={`${home}#oyunlar`}><span aria-hidden="true">←</span> {s.back}</a>
+        <h1>{game.title}</h1>
+        {game.inDevelopment && <span class="badge">{s.inDev}</span>}
+        <p class="lead">{game.pitch[lang]}</p>
+        <ul class="tags" role="list">
+          {game.tags[lang].map((tag) => <li>{tag}</li>)}
+        </ul>
+        <div class="actions">
+          <a class="btn btn-primary" href={game.itch}><Icon name="play" size={16} /> {s.play}</a>
+          {game.source
+            ? <a class="btn btn-secondary" href={game.source}><Icon name="code" /> {s.source}</a>
+            : <span class="muted-note"><Icon name="code" size={16} /> {s.sourceNone}</span>}
+        </div>
+        <p class="hint">{s.playHint} · {download}</p>
+      </div>
+      <figure class="lead-shot">
+        <Image src={shots[0]} alt={game.thumbAlt[lang]} widths={[640, 960, 1280]}
+          sizes="(min-width: 1100px) 760px, 100vw" loading="eager" fetchpriority="high" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="about-game" aria-label={s.details}>
+    <dl class="facts">
+      {info.facts.map((f) => (
+        <div><dt>{f.label[lang]}</dt><dd>{f.value[lang]}</dd></div>
+      ))}
+    </dl>
+    <div class="cols">
+      <div>
+        <h2>{s.roleHeading}</h2>
+        <p>{info.role[lang]}</p>
+        {info.context && <p class="context"><span>{s.contextLabel}:</span> {info.context[lang]}</p>}
+      </div>
+      <div>
+        <h2>{s.systemsHeading}</h2>
+        <ul class="systems" role="list">
+          {info.systems[lang].map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery" aria-labelledby="gallery-title">
+    <h2 id="gallery-title">{s.galleryHeading}</h2>
+    <ul class:list={['shots', { 'wide-first': wideFirst }]} role="list">
+      {gallery.map((src, i) => (
+        <li>
+          <Image src={src} alt={s.shotLabel(i + 2, shots.length)} widths={[640, 960, 1440]}
+            sizes={wideFirst && i === 0 ? '(min-width: 1100px) 1360px, 100vw' : '(min-width: 760px) 50vw, 100vw'} loading="lazy" decoding="auto" />
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <nav class="next" aria-label={s.nextGame} style={`--hue: ${next.hue}`}>
+    <a href={`${base}${next.slug}/`}>
+      <Image src={next.thumb} alt="" widths={[320, 480]} sizes="200px" loading="lazy" />
+      <span class="next-text">
+        <span class="next-label">{s.nextGame}</span>
+        <span class="next-title">{next.title}</span>
+      </span>
+      <Icon name="arrow" size={20} />
+    </a>
+  </nav>
+</main>
+
+<footer class="foot">
+  <p>© 2026 {profile.name}</p>
+  <p>{s.footer}</p>
+</footer>
+
+<style>
+  .game { --gap: clamp(32px, 4.5vw, 72px); }
+
+  /* hero on the game's own blurred screenshot */
+  .hero { position: relative; isolation: isolate; overflow: hidden; }
+  .backdrop { position: absolute; inset: -80px; z-index: -1; pointer-events: none; }
+  .backdrop :global(img) { width: 100%; height: 100%; object-fit: cover; filter: blur(56px) saturate(1.4) brightness(1.1); }
+  .backdrop::after {
+    content: ""; position: absolute; inset: 0;
+    background:
+      radial-gradient(60% 70% at 18% 52%, rgb(15 17 21 / 0.6), transparent 70%),
+      linear-gradient(90deg, rgb(15 17 21 / 0.65) 0%, rgb(15 17 21 / 0) 55%),
+      linear-gradient(180deg, transparent 0%, transparent 50%, var(--bg) 100%);
+  }
+  .hero-inner {
+    display: grid; grid-template-columns: minmax(300px, 0.85fr) minmax(0, 1.4fr);
+    gap: var(--gap); align-items: center;
+    max-width: 1440px; margin: 0 auto;
+    padding: clamp(28px, 4vw, 56px) var(--gutter) clamp(48px, 6vw, 88px);
+  }
+  .copy { display: grid; gap: 16px; justify-items: start; }
+  .back { color: var(--text-2); text-decoration: none; font-size: 0.9375rem; font-weight: 500; }
+  .back:hover { color: var(--text); }
+  h1 { font-size: clamp(2.75rem, 6vw, 5rem); font-weight: 750; letter-spacing: -0.045em; line-height: 0.95; }
+  .badge {
+    font-size: 0.75rem; font-weight: 600;
+    color: var(--text); background: var(--surface-3); border: 1px solid var(--border-strong);
+    padding: 2px 8px; border-radius: 999px;
+  }
+  .lead { font-size: clamp(1.0625rem, 1.4vw, 1.25rem); line-height: 1.5; max-width: 44ch; }
+  .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin-top: 4px; }
+  .hint { color: var(--text-3); font-size: 0.875rem; }
+  .lead-shot {
+    margin: 0; aspect-ratio: 16 / 9; overflow: hidden; background: #000;
+    border-radius: var(--radius-lg);
+    border: 1px solid color-mix(in oklab, var(--hue) 28%, var(--border));
+    box-shadow: var(--shadow-card);
+  }
+  .lead-shot :global(img) { width: 100%; height: 100%; object-fit: cover; }
+
+  /* facts + role/systems */
+  .about-game, .gallery, .next { max-width: 1440px; margin: 0 auto; padding: 0 var(--gutter); }
+  .about-game { display: grid; gap: clamp(28px, 3vw, 40px); padding-bottom: clamp(56px, 7vw, 96px); }
+  .cols { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: var(--gap); }
+  .cols h2, .gallery h2 {
+    font-size: clamp(1.5rem, 2.6vw, 2rem); font-weight: 750; letter-spacing: -0.03em; line-height: 1.1;
+    padding-top: 16px; border-top: 1px solid var(--border-strong); margin-bottom: 16px;
+  }
+  .cols p { color: var(--text-2); max-width: 52ch; }
+  .context { margin-top: 12px; font-size: 0.9375rem; }
+  .context span { color: color-mix(in oklab, var(--hue) 70%, var(--text-2)); font-weight: 600; }
+  .systems { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+  .systems li {
+    position: relative; padding: 12px 0 12px 22px; color: var(--text-2);
+    border-bottom: 1px solid var(--border); max-width: 70ch;
+  }
+  .systems li::before {
+    content: ""; position: absolute; left: 2px; top: 1.15em;
+    width: 8px; height: 8px; border-radius: 2px; background: var(--hue);
+  }
+
+  /* gallery */
+  .gallery { padding-bottom: clamp(56px, 7vw, 96px); }
+  .shots { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .shots li { aspect-ratio: 16 / 9; overflow: hidden; border-radius: var(--radius); background: #000; border: 1px solid var(--border); }
+  .shots.wide-first li:first-child { grid-column: 1 / -1; }
+  .shots :global(img) { width: 100%; height: 100%; object-fit: cover; }
+
+  /* next game */
+  .next { padding-bottom: clamp(56px, 7vw, 96px); }
+  .next a {
+    display: flex; align-items: center; gap: 20px;
+    padding: 14px 22px 14px 14px; text-decoration: none; color: var(--text);
+    background: var(--surface); border: 1px solid color-mix(in oklab, var(--hue) 18%, var(--border));
+    border-radius: var(--radius-lg);
+    transition: border-color 250ms, transform 300ms var(--ease-out);
+  }
+  .next a:hover { border-color: color-mix(in oklab, var(--hue) 55%, var(--border)); transform: translateY(-2px); }
+  .next a > :global(img) { width: 200px; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--radius-sm); flex: none; }
+  .next-text { display: grid; gap: 2px; flex: 1; }
+  .next-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: color-mix(in oklab, var(--hue) 70%, var(--text-2)); }
+  .next-title { font-size: clamp(1.25rem, 2vw, 1.625rem); font-weight: 700; letter-spacing: -0.02em; }
+  .next a > :global(.icon) { color: var(--text-3); }
+
+  .foot {
+    display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px;
+    max-width: 1440px; margin: 0 auto;
+    padding: 24px var(--gutter) 32px;
+    border-top: 1px solid var(--border);
+    color: var(--text-3); font-size: 0.875rem;
+  }
+
+  @media (max-width: 1099px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .backdrop::after { background: linear-gradient(180deg, rgb(15 17 21 / 0.5) 0%, rgb(15 17 21 / 0.45) 45%, var(--bg) 100%); }
+    .cols { grid-template-columns: 1fr; gap: 32px; }
+  }
+  @media (max-width: 640px) {
+    .shots { grid-template-columns: 1fr; }
+    .next a > :global(img) { width: 112px; }
+    .actions { flex-direction: column; align-items: stretch; width: 100%; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .next a { transition: none; }
+    .next a:hover { transform: none; }
+  }
+</style>

@@ -1,0 +1,73 @@
+---
+import { profile, t, type Lang } from '../data/site';
+
+interface Props {
+  lang: Lang;
+  /** Prefix for section anchors: "" on the home page, "/" or "/en/" elsewhere. */
+  anchors: string;
+  /** The same page in the other language. */
+  altHref: string;
+}
+const { lang, anchors, altHref } = Astro.props;
+const s = t[lang];
+const home = lang === 'tr' ? '/' : '/en/';
+const trHref = lang === 'tr' ? Astro.url.pathname : altHref;
+const enHref = lang === 'en' ? Astro.url.pathname : altHref;
+---
+<a class="skip" href="#main">{s.skip}</a>
+
+<header class="site-header">
+  <a class="brand" href={anchors === '' ? '#top' : home}>
+    <span class="brand-name">{profile.name}</span>
+  </a>
+  <nav class="nav" aria-label={lang === 'tr' ? 'Bölümler' : 'Sections'}>
+    <a href={`${anchors}#hakkimda`}>{s.nav.about}</a>
+    <a href={`${anchors}#oyunlar`}>{s.nav.games}</a>
+    <a href={`${anchors}#iletisim`}>{s.nav.contact}</a>
+  </nav>
+  <nav class="lang" aria-label={s.langSwitch}>
+    <a href={trHref} lang="tr" hreflang="tr" aria-current={lang === 'tr' ? 'page' : undefined}>TR</a>
+    <a href={enHref} lang="en" hreflang="en" aria-current={lang === 'en' ? 'page' : undefined}>EN</a>
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    position: sticky; top: 0; z-index: 30;
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    gap: 16px;
+    padding: 14px var(--gutter);
+    background: rgb(15 17 21 / 0.94);
+    border-bottom: 1px solid var(--border);
+  }
+  .site-header a { text-decoration: none; }
+  .brand { display: inline-flex; align-items: baseline; gap: 8px; justify-self: start; }
+  .brand-name { font-weight: 650; font-size: 1.0625rem; letter-spacing: -0.01em; }
+  .nav { display: flex; gap: 4px; }
+  .nav a {
+    color: var(--text-2); font-size: 0.9375rem; font-weight: 500;
+    padding: 8px 14px; border-radius: var(--radius-sm);
+    transition: color 150ms, background-color 150ms;
+  }
+  .nav a:hover { color: var(--text); background: var(--surface-2); }
+  .lang {
+    justify-self: end;
+    display: flex; padding: 3px; gap: 2px;
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  }
+  .lang a {
+    font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.02em;
+    color: var(--text-3); padding: 5px 10px; border-radius: var(--radius-sm);
+    transition: color 150ms, background-color 150ms;
+  }
+  .lang a:hover { color: var(--text); }
+  .lang a[aria-current="page"] { background: var(--surface-3); color: var(--text); }
+
+  @media (max-width: 860px) {
+    .site-header { grid-template-columns: 1fr auto; row-gap: 6px; padding-block: 10px 6px; }
+    .nav { grid-column: 1 / -1; grid-row: 2; justify-content: space-between; margin-inline: -14px; }
+    .nav a { padding: 10px 14px; }
+  }
+</style>

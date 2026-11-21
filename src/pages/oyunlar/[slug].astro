@@ -1,0 +1,16 @@
+---
+import Base from '../../layouts/Base.astro';
+import GamePage from '../../components/GamePage.astro';
+import { allGames } from '../../data/details';
+import { t } from '../../data/site';
+
+export function getStaticPaths() {
+  return allGames.map((g) => ({ params: { slug: g.slug } }));
+}
+const { slug } = Astro.params;
+const game = allGames.find((g) => g.slug === slug)!;
+---
+<Base lang="tr" title={t.tr.gameTitle(game.title)} description={game.pitch.tr}
+  path={`/oyunlar/${slug}/`} altPath={`/en/games/${slug}/`}>
+  <GamePage lang="tr" slug={slug!} />
+</Base>

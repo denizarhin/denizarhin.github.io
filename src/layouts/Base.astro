@@ -9,13 +9,18 @@ interface Props {
   description?: string;
   /** Keep the page out of search results (404). */
   noindex?: boolean;
+  /** This page's path and its other-language path (defaults: the home pages). */
+  path?: string;
+  altPath?: string;
 }
-const { lang, title, description, noindex = false } = Astro.props;
+const { lang, title, description, noindex = false, path, altPath } = Astro.props;
 const s = t[lang];
 const pageTitle = title ?? s.htmlTitle;
 const pageDescription = description ?? s.metaDescription;
-const trUrl = new URL('/', Astro.site).href;
-const enUrl = new URL('/en/', Astro.site).href;
+const trPath = path ? (lang === 'tr' ? path : altPath!) : '/';
+const enPath = path ? (lang === 'en' ? path : altPath!) : '/en/';
+const trUrl = new URL(trPath, Astro.site).href;
+const enUrl = new URL(enPath, Astro.site).href;
 const canonical = lang === 'en' ? enUrl : trUrl;
 const ogImage = new URL('/og.jpg', Astro.site).href;
 ---

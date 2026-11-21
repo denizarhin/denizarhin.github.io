@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import Icon from './Icon.astro';
+import Header from './Header.astro';
 import { profile, t, type Lang } from '../data/site';
 import { featured, games } from '../data/games';
 
@@ -9,6 +10,7 @@ interface Props {
 }
 const { lang } = Astro.props;
 const s = t[lang];
+const gameHref = (slug: string) => (lang === 'tr' ? `/oyunlar/${slug}/` : `/en/games/${slug}/`);
 const contacts = [
   { key: 'email', label: s.email, href: profile.email ? `mailto:${profile.email}` : '', icon: 'mail' as const, detail: profile.email },
   { key: 'linkedin', label: 'LinkedIn', href: profile.linkedin, icon: 'linkedin' as const, detail: 'linkedin.com/in/deniz-arhın-798521291' },
@@ -16,22 +18,8 @@ const contacts = [
   { key: 'github', label: 'GitHub', href: profile.github, icon: 'code' as const, detail: 'github.com/d3xsz' },
 ];
 ---
-<a class="skip" href="#main">{s.skip}</a>
 
-<header class="site-header">
-  <a class="brand" href="#top">
-    <span class="brand-name">{profile.name}</span>
-  </a>
-  <nav class="nav" aria-label={lang === 'tr' ? 'Bölümler' : 'Sections'}>
-    <a href="#hakkimda">{s.nav.about}</a>
-    <a href="#oyunlar">{s.nav.games}</a>
-    <a href="#iletisim">{s.nav.contact}</a>
-  </nav>
-  <nav class="lang" aria-label={s.langSwitch}>
-    <a href="/" lang="tr" hreflang="tr" aria-current={lang === 'tr' ? 'page' : undefined}>TR</a>
-    <a href="/en/" lang="en" hreflang="en" aria-current={lang === 'en' ? 'page' : undefined}>EN</a>
-  </nav>
-</header>
+<Header lang={lang} anchors="" altHref={lang === 'tr' ? '/en/' : '/'} />
 
 <main id="main">
   <section class="hero" id="top">
@@ -90,6 +78,7 @@ const contacts = [
               <span>{s.play}</span>
             </a>
             <span class="hint">{s.playHint} · {featured.download}</span>
+            <a class="btn btn-secondary" href={gameHref(featured.slug)}>{s.details}<span class="visually-hidden">: {featured.title}</span></a>
             {featured.source
               ? <a class="btn btn-secondary" href={featured.source}><Icon name="code" /> {s.source}</a>
               : <span class="muted-note"><Icon name="code" size={16} /> {s.sourceNone}</span>}
@@ -114,7 +103,7 @@ const contacts = [
     <ul class="game-grid" role="list">
       {games.map((g) => (
         <li class="card" style={`--hue: ${g.hue}`} data-gallery>
-          <a class="card-media" href={g.itch} tabindex="-1" aria-hidden="true">
+          <a class="card-media" href={gameHref(g.slug)} tabindex="-1" aria-hidden="true">
             {[g.thumb, ...(g.gallery ?? [])].map((img, i) => (
               <Image src={img} alt="" widths={[480, 720, 960]} sizes="(min-width: 900px) 46vw, 100vw"
                 loading="lazy" decoding={i === 0 ? 'auto' : 'async'} fetchpriority="low" data-frame={i} data-active={i === 0 ? '' : undefined} />
@@ -125,7 +114,7 @@ const contacts = [
           </a>
           <div class="card-body">
             <h3 class="card-title">
-              <a href={g.itch}>{g.title}</a>
+              <a href={gameHref(g.slug)}>{g.title}</a>
               {g.inDevelopment && <span class="badge">{s.inDev}</span>}
             </h3>
             <ul class="tags" role="list">
@@ -244,40 +233,6 @@ const contacts = [
 </script>
 
 <style>
-  /* ---------- Header ---------- */
-  .site-header {
-    position: sticky; top: 0; z-index: 30;
-    display: grid;
-    grid-template-columns: 1fr auto auto;
-    align-items: center;
-    gap: 16px;
-    padding: 14px var(--gutter);
-    background: rgb(15 17 21 / 0.94);
-    border-bottom: 1px solid var(--border);
-  }
-  .site-header a { text-decoration: none; }
-  .brand { display: inline-flex; align-items: baseline; gap: 8px; justify-self: start; }
-  .brand-name { font-weight: 650; font-size: 1.0625rem; letter-spacing: -0.01em; }
-  .nav { display: flex; gap: 4px; }
-  .nav a {
-    color: var(--text-2); font-size: 0.9375rem; font-weight: 500;
-    padding: 8px 14px; border-radius: var(--radius-sm);
-    transition: color 150ms, background-color 150ms;
-  }
-  .nav a:hover { color: var(--text); background: var(--surface-2); }
-  .lang {
-    justify-self: end;
-    display: flex; padding: 3px; gap: 2px;
-    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-  }
-  .lang a {
-    font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.02em;
-    color: var(--text-3); padding: 5px 10px; border-radius: var(--radius-sm);
-    transition: color 150ms, background-color 150ms;
-  }
-  .lang a:hover { color: var(--text); }
-  .lang a[aria-current="page"] { background: var(--surface-3); color: var(--text); }
-
   /* ---------- Hero: cinematic backdrop from the featured game's current shot ---------- */
   .hero { position: relative; isolation: isolate; overflow: hidden; }
   .backdrop { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
@@ -321,24 +276,6 @@ const contacts = [
   }
   .about { grid-area: about; display: grid; gap: 12px; color: var(--text-2); max-width: 46ch; }
   .links { list-style: none; padding: 0; margin: 12px 0 0; display: flex; flex-wrap: wrap; gap: 10px; }
-
-  /* Buttons */
-  .btn {
-    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-    min-height: 40px; padding: 8px 16px;
-    font: inherit; font-size: 0.9375rem; font-weight: 550; line-height: 1.2;
-    border-radius: var(--radius-sm); border: 1px solid transparent;
-    text-decoration: none; cursor: pointer;
-    transition: background-color 150ms, border-color 150ms, color 150ms, transform 150ms var(--ease-out);
-  }
-  .btn:active { transform: translateY(1px); }
-  .btn-primary { background: var(--accent-strong); color: var(--accent-ink); min-height: 44px; padding: 10px 22px; font-size: 1rem; }
-  .btn-primary:hover { background: var(--accent-strong-hover); }
-  .btn-secondary { background: var(--surface-2); border-color: var(--border-strong); color: var(--text); }
-  .btn-secondary:hover { background: var(--surface-3); border-color: var(--border-hover); }
-  .btn-ghost { color: var(--text-2); border-color: var(--border); }
-  .btn-ghost:hover { color: var(--text); background: var(--surface-2); }
-  .muted-note { display: inline-flex; align-items: center; gap: 6px; color: var(--text-3); font-size: 0.875rem; }
 
   /* Featured card */
   .featured {
@@ -393,24 +330,6 @@ const contacts = [
   .featured-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 24px; }
   .featured-top .actions { gap: 10px 16px; }
   .featured-body h2 { font-size: clamp(1.75rem, 2.6vw, 2.25rem); font-weight: 750; letter-spacing: -0.03em; line-height: 1.05; }
-  /* editorial colophon: label over value, divided by hairlines */
-  .facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 0; border-block: 1px solid var(--border); }
-  .facts > div { padding: 12px 16px 12px 0; }
-  .facts > div + div { padding-left: 16px; border-left: 1px solid var(--border); }
-  .facts dt { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: color-mix(in oklab, var(--hue) 70%, var(--text-2)); }
-  .facts dd { margin: 4px 0 0; font-size: 0.9375rem; font-weight: 550; color: var(--text); }
-  .tags {
-    list-style: none; padding: 0; margin: 0;
-    display: flex; flex-wrap: wrap; gap: 6px;
-  }
-  .tags li {
-    font-size: 0.8125rem; font-weight: 500;
-    color: color-mix(in oklab, var(--hue, var(--text-2)) 55%, var(--text));
-    background: color-mix(in oklab, var(--hue, var(--surface-2)) 10%, var(--surface-2));
-    border: 1px solid color-mix(in oklab, var(--hue, var(--border)) 26%, var(--border));
-    padding: 3px 10px; border-radius: 999px;
-  }
-  .tags a { color: var(--text); }
   .pitch { color: var(--text-2); max-width: 64ch; font-size: 1.0625rem; }
   .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
   .hint { color: var(--text-3); font-size: 0.875rem; }
@@ -500,14 +419,8 @@ const contacts = [
     .about { max-width: 62ch; }
   }
   @media (max-width: 860px) {
-    .site-header { grid-template-columns: 1fr auto; row-gap: 6px; padding-block: 10px 6px; }
-    .nav { grid-column: 1 / -1; grid-row: 2; justify-content: space-between; margin-inline: -14px; }
-    .nav a { padding: 10px 14px; }
     .game-grid { grid-template-columns: 1fr; }
     .card, .card:nth-child(-n + 2) { grid-column: auto; }
-    .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .facts > div + div:nth-child(3) { padding-left: 0; border-left: 0; }
-    .facts > div:nth-child(n + 3) { border-top: 1px solid var(--border); }
   }
   @media (max-width: 560px) {
     .card-body { padding: 18px; }
