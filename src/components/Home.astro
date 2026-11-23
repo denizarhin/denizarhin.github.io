@@ -96,17 +96,6 @@ const contacts = [
     </div>
   </section>
 
-  <section class="mp" aria-labelledby="mp-title">
-    <div class="mp-copy section-head">
-      <h2 id="mp-title">{s.mpHeading}</h2>
-      <p>{s.mpText}</p>
-    </div>
-    <figure class="mp-demo" id="lobby-demo">
-      <div class="mp-slot"><LobbyDemo client:only="react" lang={lang} /></div>
-      <figcaption>{s.mpCaption}</figcaption>
-    </figure>
-  </section>
-
   <section class="games" id="oyunlar" aria-labelledby="games-title">
     <div class="section-head">
       <h2 id="games-title">{s.stagesHeading}</h2>
@@ -143,6 +132,17 @@ const contacts = [
         </li>
       ))}
     </ul>
+  </section>
+
+  <section class="mp" aria-labelledby="mp-title">
+    <div class="mp-copy section-head">
+      <h2 id="mp-title">{s.mpHeading}</h2>
+      <p>{s.mpText}</p>
+    </div>
+    <figure class="mp-demo" id="lobby-demo">
+      <div class="mp-slot"><LobbyDemo client:only="react" lang={lang} /></div>
+      <figcaption>{s.mpCaption}</figcaption>
+    </figure>
   </section>
 
   <section class="contact" id="iletisim" aria-labelledby="contact-title">
@@ -356,7 +356,7 @@ const contacts = [
   .mp-copy p { max-width: 46ch; }
   .mp-demo { margin: 0; display: grid; gap: 10px; }
   /* holds the demo's space before it mounts (wide 720x420, phone column 358x400) */
-  .mp-slot { aspect-ratio: 720 / 420; }
+  .mp-slot { aspect-ratio: 720 / 420; width: 100%; max-width: 720px; }
   @media (max-width: 640px) { .mp-slot { aspect-ratio: 358 / 400; } }
   .mp-demo figcaption { color: var(--text-3); font-size: 0.8125rem; }
   @media (max-width: 1099px) { .mp { grid-template-columns: 1fr; } }
