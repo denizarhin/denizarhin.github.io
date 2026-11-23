@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import Icon from './Icon.astro';
 import Header from './Header.astro';
+import LobbyDemo from './lobby/LobbyDemo';
 import { profile, t, type Lang } from '../data/site';
 import { featured, games } from '../data/games';
 
@@ -93,6 +94,17 @@ const contacts = [
       </div>
     </article>
     </div>
+  </section>
+
+  <section class="mp" aria-labelledby="mp-title">
+    <div class="mp-copy section-head">
+      <h2 id="mp-title">{s.mpHeading}</h2>
+      <p>{s.mpText}</p>
+    </div>
+    <figure class="mp-demo" id="lobby-demo">
+      <div class="mp-slot"><LobbyDemo client:only="react" lang={lang} /></div>
+      <figcaption>{s.mpCaption}</figcaption>
+    </figure>
   </section>
 
   <section class="games" id="oyunlar" aria-labelledby="games-title">
@@ -335,6 +347,19 @@ const contacts = [
   .hint { color: var(--text-3); font-size: 0.875rem; }
 
   /* ---------- Sections ---------- */
+  .mp {
+    max-width: 1440px; margin: 0 auto;
+    padding: 0 var(--gutter) clamp(72px, 9vw, 120px);
+    display: grid; grid-template-columns: minmax(280px, 0.8fr) minmax(0, 1.5fr);
+    column-gap: clamp(32px, 4.5vw, 72px); align-items: start;
+  }
+  .mp-copy p { max-width: 46ch; }
+  .mp-demo { margin: 0; display: grid; gap: 10px; }
+  /* holds the demo's space before it mounts (wide 720x420, phone column 358x400) */
+  .mp-slot { aspect-ratio: 720 / 420; }
+  @media (max-width: 640px) { .mp-slot { aspect-ratio: 358 / 400; } }
+  .mp-demo figcaption { color: var(--text-3); font-size: 0.8125rem; }
+  @media (max-width: 1099px) { .mp { grid-template-columns: 1fr; } }
   .games, .contact { max-width: 1440px; margin: 0 auto; padding: 0 var(--gutter) clamp(72px, 9vw, 120px); }
   .section-head { display: grid; gap: 8px; margin-bottom: 28px; padding-top: 20px; border-top: 1px solid var(--border-strong); }
   .section-head h2 { font-size: clamp(1.75rem, 3.4vw, 2.75rem); font-weight: 750; letter-spacing: -0.035em; line-height: 1.05; }
